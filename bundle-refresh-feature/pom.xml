@@ -27,7 +27,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.neo4j</groupId>
+            <groupId>org.millipede</groupId>
             <artifactId>bundle-refresh</artifactId>
             <version>${project.version}</version>
         </dependency>
