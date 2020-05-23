@@ -1,0 +1,29 @@
+image: maven:3.6.3-jdk-11
+
+variables:
+  GIT_SUBMODULE_STRATEGY: normal
+  MAVEN_CLI_OPTS: "-s settings.xml"
+
+cache:
+  paths:
+    - ~/.m2/repository
+
+stages:
+  - build
+  - deploy
+
+build_feature:
+  stage: build
+  script:
+    - mvn ${MAVEN_CLI_OPTS} clean install
+  except:
+    refs:
+      - master
+
+deploy_artifacts:
+  stage: deploy
+  script:
+    - mvn ${MAVEN_CLI_OPTS} clean install deploy
+  only:
+    refs:
+      - master
